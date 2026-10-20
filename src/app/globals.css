@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f7fb;
+  --foreground: #0f172a;
+  --accent: #0070ba;
+  --accent-dark: #003087;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+}
+
+button,
+input {
+  cursor: pointer;
+}
+
+input {
+  cursor: text;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -16px;
+  width: 9px;
+  height: 16px;
+  border-radius: 2px;
+  animation: confetti-fall 2.8s ease-in forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(75vh) rotate(280deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confetti-piece {
+    animation: none;
+    display: none;
+  }
 }
